@@ -3,6 +3,7 @@ import styles from "./page.module.css";
 import Search from "@/components/Search/Search";
 import AnimeCards from "@/components/AnimeCards/AnimeCards";
 import { useState } from "react";
+import Footer from "@/components/Footer/Footer";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -13,7 +14,7 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.anime}>
         <div className={styles.anime_image}>
-          <img src="itachi-anime.gif" alt="background" />
+          <img src="astroanime-logo.png" alt="background" />
           <div className={styles.gradient} />
         </div>
         <div className={styles.hero}>
@@ -26,6 +27,10 @@ export default function Home() {
       </div>
       <div className={styles.animeCards}>
         <AnimeCards searchTerm={searchTerm} />
+      </div>
+      <div className={styles.footer}>
+        <Footer />
+        
       </div>
      
     </div>

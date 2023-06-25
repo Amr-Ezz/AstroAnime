@@ -1,0 +1,18 @@
+.anime {
+  color: #a711342f;
+}
+
+
+.video-wrapper {
+  position: relative;
+}
+.video-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: linear-gradient(to top, black, rgba(96, 3, 3, 0.69));
+  opacity: 0.6;
+}
