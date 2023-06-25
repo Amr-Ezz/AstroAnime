@@ -1,0 +1,127 @@
+.myCard {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 20px;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  perspective: 1000px;
+}
+.frontSide p {
+  background: none;
+}
+.backSide p {
+  background: none;
+}
+
+.title {
+  font-size: 1em;
+  padding-bottom: 10px;
+  font-weight: 600;
+  text-align: center;
+  margin: 0;
+  background: none;
+  width: 100%;
+  height: fit-content;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex-shrink: 0;
+}
+
+.innerCard {
+  position: relative;
+  width: 250px;
+  height: 320px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+ .innerCard:hover {
+  transform: rotateY(180deg);
+}
+
+.frontSide,
+.backSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(153, 25, 25, 0.581);
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 0 0.3em rgba(213, 21, 21, 0.5);
+  font-weight: 700;
+}
+
+.frontSide,
+.frontSide::before {
+  background: linear-gradient(
+    43deg,
+    rgba(208, 2, 2, 0.467) 0%,
+    rgba(174, 1, 102, 0.705) 46%,
+    rgb(255, 204, 112) 100%
+  );
+}
+
+.backSide,
+.backSide::before {
+  background-image: linear-gradient(160deg, #e900004f 0%, #7e0f3f92 100%);
+}
+
+.backSide {
+  transform: rotateY(180deg);
+}
+
+.frontSide::before,
+.backSide::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  z-index: -1;
+  border-radius: 1em;
+  filter: blur(20px);
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.3;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+.anime_img {
+ width: 100%;
+  height: 100%;
+  object-fit: cover;
+  
+}
+.japanese {
+  font-size: small;
+  color: #dc8585;
+}
+.type {
+font-weight: 300;
+}
+.year {
+  font-size: large;
+}
