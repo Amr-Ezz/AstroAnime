@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <MDBFooter
       className="text-center text-white py-4"
-      style={{ backgroundColor: "#a711342f" }}
+      style={{ backgroundColor: "#00000092" }}
     >
       <MDBContainer>
         <section>

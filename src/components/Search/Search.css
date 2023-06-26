@@ -8,8 +8,8 @@
 .inputbox {
   position: relative;
   width: 196px;
-  left: 0;
-  right: 1rem;
+  left: 1rem;
+  
 }
 
 .inputbox input {

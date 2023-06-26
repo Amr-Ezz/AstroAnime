@@ -27,12 +27,17 @@ const AnimeCards = ({ searchTerm }) => {
         .map((anime) => (
           <div className="innerCard" key={anime.mal_id}>
             <div className="frontSide">
+              <div className="paragraph">
               <p className="title">{anime.title}</p>
-              <img
-                src={anime.images.jpg.large_image_url}
-                alt="anime"
-                className="anime_img"
-              />
+
+              </div>
+              <div className="imgContainer">
+                <img
+                  src={anime.images.jpg.large_image_url}
+                  alt="anime"
+                  className="anime_img"
+                />
+              </div>
             </div>
             <div className="backSide">
               <p className="title">{anime.title}</p>

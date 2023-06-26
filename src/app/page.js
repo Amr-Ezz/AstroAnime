@@ -14,13 +14,13 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.anime}>
         <div className={styles.anime_image}>
-          <img src="astroanime-logo.png" alt="background" />
-          <div className={styles.gradient} />
+          {/* <img src="astroanime-logo.png" alt="background" /> */}
+          {/* <div className={styles.gradient} /> */}
         </div>
         <div className={styles.hero}>
           <h1 className={styles.hero_heading}> Search your favourite anime</h1>
           <p className={styles.japanese}>あなたのアニメを検索</p>
-         <div>
+         <div className={styles.search_input}>
            <Search onSearch={handleSearch} />
            </div>
         </div>

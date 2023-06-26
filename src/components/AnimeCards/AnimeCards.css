@@ -7,6 +7,7 @@
   width: 100%;
   height: 100%;
   perspective: 1000px;
+  padding-top: 1rem;
 }
 .frontSide p {
   background: none;
@@ -17,13 +18,12 @@
 
 .title {
   font-size: 1em;
-  padding-bottom: 10px;
-  font-weight: 600;
+  padding-bottom: 2px;
+  font-weight: 500;
   text-align: center;
   margin: 0;
   background: none;
   width: 100%;
-  height: fit-content;
   overflow: hidden;
   text-overflow: ellipsis;
   flex-shrink: 0;
@@ -47,7 +47,7 @@
 .backSide {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-evenly;
   padding: 20px;
   position: absolute;
@@ -66,9 +66,9 @@
 .frontSide::before {
   background: linear-gradient(
     43deg,
-    rgba(208, 2, 2, 0.467) 0%,
-    rgba(174, 1, 102, 0.705) 46%,
-    rgb(255, 204, 112) 100%
+    rgba(204, 3, 3, 0.467) 0%,
+    rgba(100, 2, 59, 0.359) 46%,
+    rgb(255, 112, 174) 100%
   );
 }
 
@@ -109,10 +109,21 @@
     opacity: 0.3;
   }
 }
-.anime_img {
- width: 100%;
+.imgContainer {
+  position: relative;
+  width: 100%;
   height: 100%;
-  object-fit: cover;
+  padding-bottom: 75%;
+  overflow: hidden;
+}
+.anime_img {
+ position: absolute;
+ bottom: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ object-fit: contain;
+border-radius: 20%;
   
 }
 .japanese {
@@ -124,4 +135,8 @@ font-weight: 300;
 }
 .year {
   font-size: large;
+}
+.paragraph {
+  width: 100%;
+  height: 20%;
 }
