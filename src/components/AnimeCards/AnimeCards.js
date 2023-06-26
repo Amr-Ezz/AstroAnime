@@ -14,13 +14,14 @@ const AnimeCards = ({ searchTerm }) => {
   };
   const [animeList, setAnimeList] = useState([]);
   useEffect(() => {
-    fetchUrl(searchTerm).then((data) => setAnimeList(data));
+    if (searchTerm) {
+      fetchUrl(searchTerm).then((data) => setAnimeList(data));
+    }
   }, [searchTerm]);
   return (
     <div className="myCard">
       <BsArrowLeftShort onClick={prevPage} />
-      {animeList
-        .slice(
+      {animeList? animeList.slice(
           currentPage * itemsPerPage,
           currentPage * itemsPerPage + itemsPerPage
         )
@@ -47,7 +48,7 @@ const AnimeCards = ({ searchTerm }) => {
               <p className="year">{anime.year}</p>
             </div>
           </div>
-        ))}
+        )) : null }
       <BsArrowRightShort onClick={nextPage} />
     </div>
   );

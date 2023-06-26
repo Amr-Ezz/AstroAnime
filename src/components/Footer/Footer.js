@@ -30,7 +30,7 @@ const Footer = () => {
         </section>
       </MDBContainer>
       <div className="footer_container">
-        <img src="anime_footer.jpg" alt="anime image" className="anime_footer_img" />
+        {/* <img src="anime_footer.jpg" alt="anime image" className="anime_footer_img" /> */}
       </div>
 
       <div

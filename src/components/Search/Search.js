@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./Search.css";
 export const fetchUrl = async (searchTerm) => {
   const res = await fetch(
@@ -10,6 +10,7 @@ export const fetchUrl = async (searchTerm) => {
 };
 const Search = ({ onSearch }) => {
   const [search, setSearch] = useState("");
+  const inputRef = useRef();
  
   useEffect(() => {
     if (search) {
@@ -19,21 +20,23 @@ const Search = ({ onSearch }) => {
     }
   }, [search]);
 
-  const searchHandler = (e) => {
+  const submitHandler = (e) => {
     e.preventDefault();
-    setSearch(e.target.value);
+    onSearch(inputRef.current.value)
   };
+
 
   return (
     <div className="search">
       <div className="inputbox">
-        <form onSubmit={searchHandler}>
+        <form onSubmit={submitHandler}>
           <input
             className="input-value"
             value={search}
+            onChange={e => setSearch(e.target.value)}
             required="required"
             type="text"
-            onChange={(e) => setSearch(e.target.value)}
+            ref={inputRef}
           />
           <span>Search</span>
           <i></i>
