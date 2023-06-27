@@ -4,12 +4,14 @@ import Search from "@/components/Search/Search";
 import AnimeCards from "@/components/AnimeCards/AnimeCards";
 import { useState } from "react";
 import Footer from "@/components/Footer/Footer";
+import { fetchUrl } from "@/components/Search/Search";
+import { fetchPopularAnimes, fetchTopAnimes } from "@/api/requests";
 
 export default function Home() {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchTerm, setSearchTerm] = useState("");
   const handleSearch = (term) => {
     setSearchTerm(term);
-  }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.anime}>
@@ -20,19 +22,25 @@ export default function Home() {
         <div className={styles.hero}>
           <h1 className={styles.hero_heading}> Search your favourite anime</h1>
           <p className={styles.japanese}>あなたのアニメを検索</p>
-         <div className={styles.search_input}>
-           <Search onSearch={handleSearch} />
-           </div>
+          <div className={styles.search_input}>
+            <Search onSearch={handleSearch} />
+          </div>
         </div>
       </div>
       <div className={styles.animeCards}>
-        <AnimeCards searchTerm={searchTerm} />
+        <AnimeCards fetchFunction={fetchUrl} searchTerm={searchTerm} />
+        <div className={styles.popularAnime}>
+          <h3> Popular Anime</h3>
+          <AnimeCards fetchFunction={fetchPopularAnimes} />
+        </div>
+        <div className={styles.popularAnime}>
+          <h3> Top Airing </h3>
+          <AnimeCards fetchFunction={fetchTopAnimes} />
+        </div>
       </div>
       <div className={styles.footer}>
         <Footer />
-        
       </div>
-     
     </div>
   );
 }

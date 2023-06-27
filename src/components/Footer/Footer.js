@@ -1,5 +1,12 @@
 import React from "react";
 import { MDBFooter, MDBContainer, MDBCol, MDBRow } from "mdb-react-ui-kit";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faFacebook,
+  faTwitter,
+  faInstagram,
+  faLinkedin,
+} from "@fortawesome/free-brands-svg-icons";
 import "./Footer.css";
 const Footer = () => {
   return (
@@ -12,6 +19,49 @@ const Footer = () => {
           <MDBRow>
             <MDBCol lg="12" style={{ padding: "0" }}>
               <div className="video-wrapper">
+                <ul className="footer-wrapper">
+                  <li className="footer_links--1">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer_icon--1"
+                    >
+                      <FontAwesomeIcon icon={faFacebook} /> Facebook
+                    </a>
+                  </li>
+                  <li className="footer_links--2">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer_icon--2"
+                    >
+                      <FontAwesomeIcon icon={faTwitter} /> Twitter
+                    </a>
+                  </li>
+                  <li className="footer_links--3">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer_icon--3"
+                    >
+                      <FontAwesomeIcon icon={faInstagram} /> Instagram
+                    </a>
+                  </li>
+                  <li className="footer_links--4">
+                    <a
+                      href="#"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="footer_icon--4"
+                    >
+                      <FontAwesomeIcon icon={faLinkedin} /> LinkedIn
+                    </a>
+                  </li>
+                </ul>
+
                 <div className="ratio ratio-16x9">
                   <video
                     className="shadow-1-strong rounded"
