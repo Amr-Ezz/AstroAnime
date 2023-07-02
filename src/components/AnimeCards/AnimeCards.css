@@ -1,6 +1,7 @@
 .myCard {
   display: flex;
   flex-direction: row;
+  position: relative;
   justify-content: space-between;
   gap: 20px;
   background-color: transparent;
@@ -39,7 +40,7 @@
   cursor: pointer;
 }
 
- .innerCard:hover {
+.innerCard:hover {
   transform: rotateY(180deg);
 }
 
@@ -117,21 +118,20 @@
   overflow: hidden;
 }
 .anime_img {
- position: absolute;
- bottom: 0;
- left: 0;
- width: 100%;
- height: 100%;
- object-fit: contain;
-border-radius: 20%;
-  
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20%;
 }
 .japanese {
   font-size: small;
   color: #dc8585;
 }
 .type {
-font-weight: 300;
+  font-weight: 300;
 }
 .year {
   font-size: large;
@@ -139,4 +139,163 @@ font-weight: 300;
 .paragraph {
   width: 100%;
   height: 20%;
+}
+/* .left-Arrow  {
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+  transition: color 0.3s ease-in-out;
+}
+.left-Arrow:hover {
+  color: #900808e3;
+} */
+.buttonContainer {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.btn {
+  font-family: "Poppins", sans-serif;
+  letter-spacing: 2px;
+  background: none;
+  color: white;
+  position: relative;
+  outline: none;
+  border: none;
+  height: 50px;
+  width: 190px;
+  font-size: 14px;
+  font-weight: 400;
+  z-index: 2;
+  transition: 0.01s 0.23s ease-out all;
+  overflow: hidden;
+  border-radius: 40px;
+}
+
+.btn:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 70%;
+  background: linear-gradient(
+    43deg,
+    rgba(204, 3, 3, 0.467) 0%,
+    rgba(100, 2, 59, 0.359) 46%,
+    rgb(255, 112, 174) 100%
+  );
+  z-index: -1;
+  transition: 0.3s ease-in all;
+}
+
+.btn:after {
+  content: "";
+  position: absolute;
+  left: -5%;
+  top: 5%;
+  height: 90%;
+  width: 5%;
+  background: rgba(204, 3, 3, 0.467) 0%;
+  transition: 0.4s 0.02s ease-in all;
+}
+
+.btn:hover {
+  cursor: pointer;
+  color: transparent;
+  background: linear-gradient(
+    43deg,
+    rgba(204, 3, 3, 0.467) 0%,
+    rgba(100, 2, 59, 0.359) 46%
+  );
+}
+
+.btn:hover:before {
+  left: 120%;
+  width: 25%;
+}
+
+.btn:hover:after {
+  left: 100%;
+  width: 70%;
+  background-color: #dc8585;
+}
+
+.btnNext:hover > .icon-right.after:after {
+  left: -80px;
+  color: white;
+  transition: 0.2s 0.2s ease all;
+}
+.btnPrev:hover > .icon-left.after:after {
+  left: -80px;
+  color: white;
+  transition: 0.2s 0.2s ease all;
+}
+
+.btnNext:hover > .icon-right.after:before {
+  left: -104px;
+  top: 14px;
+  opacity: 0.2;
+  color: white;
+}
+.btnPrev:hover > .icon-left.after:before {
+  left: -104px;
+  top: 14px;
+  opacity: 0.2;
+  color: white;
+}
+
+.icon-left,
+.icon-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.icon-right:after {
+  font-family: "FontAwesome";
+  content: "→";
+  font-size: 24px;
+  display: inline-block;
+  position: relative;
+  top: 26px;
+  transform: translate3D(0, -55%, 0);
+}
+
+.icon-left:after {
+  font-family: "FontAwesome";
+  content: "←";
+  font-size: 24px;
+  display: inline-block;
+  position: relative;
+  top: 26px;
+  transform: translate3D(0, -55%, 0);
+}
+
+.icon-right.after:after {
+  left: -250px;
+  color: black;
+  transition: 0.15s 0.25s ease left, 0.5s 0.05s ease color;
+}
+.icon-left.after:after {
+  left: -250px;
+  color: black;
+  transition: 0.15s 0.25s ease left, 0.5s 0.05s ease color;
+}
+
+.icon-right.after:before {
+  content: "Next";
+  position: absolute;
+  left: -230px;
+  top: 14px;
+  opacity: 0;
+  transition: 0.2s ease-in all;
+}
+.icon-left.after:before {
+  content: "Previous";
+  position: absolute;
+  left: -230px;
+  top: 14px;
+  opacity: 0;
+  transition: 0.2s ease-in all;
 }

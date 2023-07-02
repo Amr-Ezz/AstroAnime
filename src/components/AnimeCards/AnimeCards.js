@@ -20,40 +20,62 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
       fetchFunction().then((data) => setAnimeList(data));
     }
   }, [fetchFunction, searchTerm]);
+  const showButtons = searchTerm || fetchFunction.length !== 1;
   return (
-    <div className="myCard">
-      <BsArrowLeftShort onClick={prevPage} />
-      {animeList
-        ? animeList
-            .slice(
-              currentPage * itemsPerPage,
-              currentPage * itemsPerPage + itemsPerPage
-            )
-            .map((anime) => (
-              <div className="innerCard" key={anime.mal_id}>
-                <div className="frontSide">
-                  <div className="paragraph">
+    <div>
+      <div className="myCard">
+        {/* <BsArrowLeftShort onClick={prevPage} className="left-Arrow" /> */}
+
+        {animeList
+          ? animeList
+              .slice(
+                currentPage * itemsPerPage,
+                currentPage * itemsPerPage + itemsPerPage
+              )
+              .map((anime) => (
+                <div className="innerCard" key={anime.mal_id}>
+                  <div className="frontSide">
+                    <div className="paragraph">
+                      <p className="title">{anime.title}</p>
+                    </div>
+                    <div className="imgContainer">
+                      <img
+                        src={anime.images.jpg.large_image_url}
+                        alt="anime"
+                        className="anime_img"
+                      />
+                    </div>
+                  </div>
+                  <div className="backSide">
                     <p className="title">{anime.title}</p>
-                  </div>
-                  <div className="imgContainer">
-                    <img
-                      src={anime.images.jpg.large_image_url}
-                      alt="anime"
-                      className="anime_img"
-                    />
+                    <p className="japanese">{anime.title_japanese}</p>
+                    {anime.episodes ? <p>Episodes: {anime.episodes}</p> : null}
+                    <p className="type">{anime.type}</p>
+                    <p className="year">{anime.year}</p>
                   </div>
                 </div>
-                <div className="backSide">
-                  <p className="title">{anime.title}</p>
-                  <p className="japanese">{anime.title_japanese}</p>
-                  {anime.episodes ? <p>Episodes: {anime.episodes}</p> : null}
-                  <p className="type">{anime.type}</p>
-                  <p className="year">{anime.year}</p>
-                </div>
-              </div>
-            ))
-        : null}
-      <BsArrowRightShort onClick={nextPage} />
+              ))
+          : null}
+
+        {/* <BsArrowRightShort onClick={nextPage} /> */}
+      </div>
+      {showButtons && (
+        <div className="buttonContainer">
+          {currentPage > 0 && (
+            <button className="btn btnPrev" onClick={prevPage}>
+              Prev
+              <span className="icon-left"></span>
+              <span className="icon-left after"></span>
+            </button>
+          )}
+
+          <button className="btn btnNext" onClick={nextPage}>
+            Next
+            <span className="icon-right"></span>
+            <span className="icon-right after"></span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

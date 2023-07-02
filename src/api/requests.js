@@ -17,3 +17,11 @@ export const fetchTopAnimes = () => {
       throw err;
     });
 };
+export const fetchSingleAnime = ({ animeID }) => {
+  return axios
+    .get(`https://api.jikan.moe/v4/anime/${animeID}`)
+    .then((res) => res.data.data)
+    .catch((err) => {
+      throw err;
+    });
+};
