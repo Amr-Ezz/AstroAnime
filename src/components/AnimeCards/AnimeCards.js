@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./AnimeCards.css";
-import { fetchUrl } from "../Search/Search";
-import { BsArrowLeftShort, BsArrowRightShort } from "react-icons/bs";
+import Link from "next/link";
 
 const AnimeCards = ({ fetchFunction, searchTerm }) => {
   const [currentPage, setCurrentPage] = useState(0);
@@ -46,13 +45,22 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                       />
                     </div>
                   </div>
-                  <div className="backSide">
-                    <p className="title">{anime.title}</p>
-                    <p className="japanese">{anime.title_japanese}</p>
-                    {anime.episodes ? <p>Episodes: {anime.episodes}</p> : null}
-                    <p className="type">{anime.type}</p>
-                    <p className="year">{anime.year}</p>
-                  </div>
+                 
+                    
+                      <div className="backSide">
+                        <p className="title">{anime.title}</p>
+                        <p className="japanese">{anime.title_japanese}</p>
+                        {anime.episodes ? (
+                          <p>Episodes: {anime.episodes}</p>
+                        ) : null}
+                        <p className="type">{anime.type}</p>
+                        <p className="year">{anime.year}</p>
+                        <Link href={`/SingleAnime/${anime.mal_id}`}>
+                          <p className="type">More Details</p>
+                        </Link>
+                      </div>
+                    
+               
                 </div>
               ))
           : null}
