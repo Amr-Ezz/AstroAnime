@@ -55,7 +55,7 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                         ) : null}
                         <p className="type">{anime.type}</p>
                         <p className="year">{anime.year}</p>
-                        <Link href={`/SingleAnime/${anime.mal_id}`}>
+                        <Link href={`/${anime.mal_id}`}>
                           <p className="type">More Details</p>
                         </Link>
                       </div>
