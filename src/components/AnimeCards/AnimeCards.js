@@ -35,7 +35,7 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                 <div className="innerCard" key={anime.mal_id}>
                   <div className="frontSide">
                     <div className="paragraph">
-                      <p className="title">{anime.title}</p>
+                      <p className="title">{anime.title_english}</p>
                     </div>
                     <div className="imgContainer">
                       <img
@@ -48,7 +48,7 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                  
                     
                       <div className="backSide">
-                        <p className="title">{anime.title}</p>
+                        <p className="title">{anime.title_english}</p>
                         <p className="japanese">{anime.title_japanese}</p>
                         {anime.episodes ? (
                           <p>Episodes: {anime.episodes}</p>

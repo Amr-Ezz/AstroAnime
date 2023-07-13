@@ -7,6 +7,7 @@ import {
 } from "@/api/requests";
 import "./animePage.css";
 import { useState, useEffect } from "react";
+import Link from "next/link";
 
 const AnimePage = ({ params }) => {
   const animeID = params.ID;
@@ -109,6 +110,7 @@ const AnimePage = ({ params }) => {
             <button className="btn" onClick={toggleSynopsis}>
               Read more
             </button>
+            <Link className="btn" href={`/${anime.mal_id}/reviews`}>Reviews</Link>
           </div>
         </div>
       </div>
@@ -137,7 +139,7 @@ const AnimePage = ({ params }) => {
                     <div className="cardDetailsHaeder">
                       {anime.title_english}
                     </div>
-                    <div className="cardDetailsButton">Click me</div>
+                    <Link href={`/${anime.mal_id}`} className="cardDetailsButton">Click me</Link>
                   </div>
                 </div>
               ))}

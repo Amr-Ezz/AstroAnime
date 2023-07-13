@@ -25,4 +25,13 @@ export const fetchSingleAnime = ({ animeID }) => {
       throw err;
     });
 };
-
+export const fetchReviewAnime = ({ animeID }) => {
+  return axios
+    .get(`https://api.jikan.moe/v4/anime/${animeID}/reviews`)
+    .then((res) => {
+      return res.data.data;
+    })
+    .catch((err) => {
+      throw err;
+    });
+};
