@@ -70,7 +70,7 @@ const AnimePage = ({ params }) => {
             <img src={anime.images.jpg.large_image_url} alt="animeCard" />
             <div className="content">
               <p className="title">
-                {anime.title}
+                {anime.title_english}
                 <br />
                 <span>{anime.title_japanese}</span>
               </p>
