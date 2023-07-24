@@ -65,7 +65,16 @@ const AnimePage = ({ params }) => {
           />
         </div>
         <div className="animeCard">
-          <div className="card">
+          <div className="content">
+            <h3 className="title">
+              {anime.title_english}
+              <br />
+            </h3>
+            <p className="paragraph">{anime.title_japanese}</p>
+            <hr style={{margin: "5px 300px", borderColor: "white", borderWidth: "4px", opacity: "1"}} />
+
+          </div>
+          {/* <div className="card">
             <b></b>
             <img src={anime.images.jpg.large_image_url} alt="animeCard" />
             <div className="content">
@@ -75,7 +84,7 @@ const AnimePage = ({ params }) => {
                 <span>{anime.title_japanese}</span>
               </p>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
       <div className="border" />
@@ -110,7 +119,9 @@ const AnimePage = ({ params }) => {
             <button className="btn" onClick={toggleSynopsis}>
               Read more
             </button>
-            <Link className="btn" href={`/${anime.mal_id}/reviews`}>Reviews</Link>
+            <Link className="btn" href={`/${anime.mal_id}/reviews`}>
+              Reviews
+            </Link>
           </div>
         </div>
       </div>
@@ -139,7 +150,12 @@ const AnimePage = ({ params }) => {
                     <div className="cardDetailsHaeder">
                       {anime.title_english}
                     </div>
-                    <Link href={`/${anime.mal_id}`} className="cardDetailsButton">Click me</Link>
+                    <Link
+                      href={`/${anime.mal_id}`}
+                      className="cardDetailsButton"
+                    >
+                      Click me
+                    </Link>
                   </div>
                 </div>
               ))}
@@ -147,10 +163,9 @@ const AnimePage = ({ params }) => {
           </div>
 
           <div className="anime_row">
-          <div className="header_info">
+            <div className="header_info">
               <h3 className="heading_info">Top Airing</h3>
             </div>
-        
 
             <div className="cards">
               {topAiring.slice(0, 3).map((anime, index) => (

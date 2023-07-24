@@ -113,23 +113,38 @@
   transition: color 1s;
 } */
 
+.flex-wrapper {
+  display: flex;
+  gap: 2em;
+}
 .card {
   width: 100%;
-  background: linear-gradient(to left, #f7ba2b95 0%, #ea535885 100%);
-  color: white;
-  position: relative;
-  border-radius: 2.5em;
-  padding: 2em;
-  transition: transform 0.4s ease;
+  border-radius: 30px;
+  max-height: 250px;
+  background: #0000002a;
+  -webkit-box-shadow: 10px 10px 20px rgba(25, 25, 25, 0.482),
+    -15px -15px 30px rgb(60, 60, 60);
+  box-shadow: 10px 10px 20px rgb(25, 25, 25), -15px -15px 30px rgba(60, 60, 60, 0.66);
+}
+.image-wrapper {
+  width: 100%;
+  height: 100%;
+}
+.image-wrapper img {
+border-radius: 100%;
+width: 50px;
+height: 50px;
 }
 
 .card .card-content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 5em;
+  gap: 1em;
   height: 100%;
   transition: transform 0.4s ease;
+  color: white;
+  padding: 1em;
 }
 
 .card .card-top,
@@ -151,7 +166,7 @@
 
 .card .card-top p,
 .card .card-bottom p {
-  font-weight: 600;
+  font-weight: 300;
 }
 
 .card .card-bottom {
@@ -193,11 +208,86 @@
 }
 .review-container {
   width: 100%;
-  height: 100%;
+  height: 250px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  gap: 10px;
-  background: linear-gradient(to left, #f7ba2b29 0%, #ea535836 100%);
+  gap: 2em;
+  background: linear-gradient(to left, #35000029 0%, #20010236 100%);
+}
+.cards {
+  position: relative;
+  margin: 15rem 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 2;
+}
+.card_suggest {
+  z-index: 1;
+  position: absolute;
+  width: 254px;
+  height: 190px;
+  border-radius: 10px;
+  transition: all 0.5s ease-out;
+  overflow: hidden;
+  transform: translateX(0px) translateY(0px) perspective(905px) rotateX(0deg)
+    rotateY(0deg) rotateZ(-8deg);
+  margin-left: 5rem;
+}
+
+.card_suggest.one {
+  top: -120px;
+  left: -150px;
+  background: linear-gradient(180deg, #ff0055 0%, #000066 100%);
+}
+
+.card_suggest.two {
+  top: -95px;
+  left: -125px;
+  background: linear-gradient(180deg, #fa00ff 0%, #01f998 99%);
+}
+
+.card_suggest.three {
+  top: -70px;
+  left: -100px;
+  background: linear-gradient(180deg, #c0f901 0%, #fa00ff 100%);
+}
+
+.card_suggest:hover {
+  z-index: 4;
+  transform: perspective(1000px) rotateX(0deg) rotateY(0deg) rotateZ(0deg) !important;
+  transition: all 0.5s ease-out;
+}
+
+.cardDetails {
+  width: 55%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  background: rgba(0, 0, 0, 0.8);
+  transition: 0.5s;
+  transform-origin: left;
+  transform: perspective(2000px) rotateY(-90deg);
+}
+
+.card_suggest:hover .cardDetails {
+  transform: perspective(2000px) rotateY(0deg);
+}
+
+.cardDetailsHaeder {
+  font-weight: 600;
+  color: #edb899;
+}
+
+.cardDetailsButton {
+  padding: 3px 6px;
+  border-radius: 25px;
+  background-color: #edb899;
+  color: #000;
+  font-weight: 600;
 }
