@@ -37,3 +37,14 @@ export const fetchReviewAnime = ({ animeID }) => {
       throw err;
     });
 };
+export const fetchCharactersAnime = () => {
+  return axios
+    .get(`https://animechan.vercel.app/api/random"`)
+    .then((res) => {
+      return res.data.data,
+      console.log(res)
+      
+    }).catch((err) => {
+      console.log(err);
+    });
+};

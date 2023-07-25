@@ -14,6 +14,18 @@ const reviewsPage = ({ params }) => {
   const [topAiring, setTopAiring] = useState([]);
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
+  // const manageSynopsis = () => {
+  //   setShowFullSynopsis(!showFullSynopsis);
+  // };
+  // const getFullSynopsis = () => {
+  //   if (anime.synopsis.length > 100) {
+  //     return showFullSynopsis
+  //       ? anime.synopsis
+  //       : `${anime.synopsis.substring(0, 200)}...`;
+  //   } else {
+  //     return anime.synopsis;
+  //   }
+  // };
 
   const toggleSynopsis = (index) => {
     if (activeCard === index) {
@@ -56,18 +68,46 @@ const reviewsPage = ({ params }) => {
         .catch((err) => console.log(err));
     }
   }, [animeID]);
+
   if (error) {
     return <div>{error}</div>;
   }
   if (anime === null) {
     <div>Loading..</div>;
   }
+
   console.log(anime);
   // const toggleSynopsis = () => setShowFullSynopsis(!showFullSynopsis);
 
   return (
     <div className="hero-container">
       <div className="card-info" key={anime.mal_id}>
+        <div className="card_description">
+          <div className="circle"></div>
+          <div className="circle"></div>
+          <div className="card-inner">
+            <div className="paragraph">
+              <p className="para">{anime.synopsis}</p>
+            
+            </div>
+
+            <div className="card-details">
+              <div className="card-review">
+                <div className="info">
+                  {anime.images && (
+                    <img
+                      src={anime.images.jpg.large_image_url}
+                      alt="animeCard"
+                    />
+                  )}
+                  <div className="overlay">
+                    <h3 className="title">{anime.title_english}</h3>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="video-wrapper">
           <video
             className="shadow-1-strong rounded"
@@ -79,18 +119,6 @@ const reviewsPage = ({ params }) => {
             playsInline
             style={{ width: "100%" }}
           ></video>
-        </div>
-        <div className="card-details">
-          <div className="card-review">
-            <div className="info">
-              {anime.images && (
-                <img src={anime.images.jpg.large_image_url} alt="animeCard" />
-              )}
-              <div className="overlay">
-                <h3 className="title">{anime.title_english}</h3>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
       <div className="review-container">
@@ -111,13 +139,15 @@ const reviewsPage = ({ params }) => {
                 <div className="card-content">
                   <div className="card-top">
                     <div className="image-wrapper">
-                    <img
-                      src={reviewItem.user.images.jpg.image_url}
-                      alt="username"
-                    />
+                      <img
+                        src={reviewItem.user.images.jpg.image_url}
+                        alt="username"
+                      />
                     </div>
-                  
-                    <p style={{paddingRight: "10px"}}>{reviewItem.user.username}</p>
+
+                    <p style={{ paddingRight: "10px" }}>
+                      {reviewItem.user.username}
+                    </p>
 
                     {/* <span className="card-title"> {index + 1}</span> */}
                     <p>{reviewItem.score}</p>
@@ -141,11 +171,9 @@ const reviewsPage = ({ params }) => {
         })}
       </div>
       <div className="anime_row">
-        <div className="header_info">
-          <h3 className="heading_info">Top Airing</h3>
-        </div>
+        
 
-        <div className="cards">
+        {/* <div className="cards">
           {topAiring &&
             topAiring.slice(0, 3).map((anime, index) => (
               <div
@@ -163,7 +191,7 @@ const reviewsPage = ({ params }) => {
                 </div>
               </div>
             ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );

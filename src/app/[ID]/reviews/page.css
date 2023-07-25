@@ -4,17 +4,106 @@
   align-items: center;
   background: black;
 }
+
 .card-info {
   display: flex;
-  flex-direction: row-reverse;
+  position: relative;
+  flex-direction: column-reverse;
   justify-content: space-between;
   align-items: center;
   background: linear-gradient(to top, black, rgba(42, 0, 0, 0.69));
 }
+
+.video-wrapper {
+  width: 100%;
+}
+
+.card_description {
+  width: 100%;
+  height: 254px;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: absolute;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.card-inner {
+  width: inherit;
+  height: inherit;
+  background: rgba(255, 255, 255, 0.05);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+}
+.paragraph {
+  padding-top: 1em;
+}
+.para {
+  color: white;
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 25px;
+}
+
+.circle {
+  width: 100px;
+  height: 100px;
+  background: radial-gradient(#e68133, #b80303);
+  border-radius: 50%;
+  position: absolute;
+  animation: move-up6 2s ease-in infinite alternate-reverse;
+}
+
+.circle:nth-child(1) {
+  top: -25px;
+  left: -25px;
+}
+
+.circle:nth-child(2) {
+  bottom: -25px;
+  right: -25px;
+  -webkit-animation-name: move-down1;
+  animation-name: move-down1;
+}
+
+@-webkit-keyframes move-up6 {
+  to {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes move-up6 {
+  to {
+    -webkit-transform: translateY(-10px);
+    transform: translateY(-10px);
+  }
+}
+
+@-webkit-keyframes move-down1 {
+  to {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+}
+
+@keyframes move-down1 {
+  to {
+    -webkit-transform: translateY(10px);
+    transform: translateY(10px);
+  }
+}
+
 .card-review {
   --background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
   width: 254px;
-  height: 370px;
+  height: 254px;
   padding: 5px;
   border-radius: 1rem;
   overflow: visible;
@@ -54,6 +143,7 @@
   border-radius: 0.7rem;
   position: relative;
 }
+
 .info .overlay {
   display: flex;
   justify-content: center;
@@ -68,19 +158,23 @@
   opacity: 0;
   color: #facd64;
 }
+
 .info:hover .overlay {
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
   opacity: 1;
 }
+
 .info .title {
   text-align: center;
   font-size: 2rem;
   transition: opacity 0.5s ease;
   opacity: 0;
 }
+
 .info:hover .title {
   opacity: 1;
 }
+
 .info::after {
   content: "";
   position: absolute;
@@ -90,6 +184,7 @@
   height: 100%;
   background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.497));
 }
+
 .info img {
   width: 100%;
   height: 100%;
@@ -97,26 +192,11 @@
   border-radius: 0.7rem;
 }
 
-/* .card-review .title {
-  font-weight: 600;
-  font-size: large;
-  letter-spacing: 0.1em;
-} */
-
-/*Hover*/
-.card-review:hover::after {
-  opacity: 0;
-}
-
-/* .card-review:hover .info {
-  color: #facd64;
-  transition: color 1s;
-} */
-
 .flex-wrapper {
   display: flex;
   gap: 2em;
 }
+
 .card {
   width: 100%;
   border-radius: 30px;
@@ -124,16 +204,50 @@
   background: #0000002a;
   -webkit-box-shadow: 10px 10px 20px rgba(25, 25, 25, 0.482),
     -15px -15px 30px rgb(60, 60, 60);
-  box-shadow: 10px 10px 20px rgb(25, 25, 25), -15px -15px 30px rgba(60, 60, 60, 0.66);
+  box-shadow: 10px 10px 20px rgb(25, 25, 25),
+    -15px -15px 30px rgba(60, 60, 60, 0.66);
 }
+
 .image-wrapper {
   width: 100%;
   height: 100%;
 }
+
 .image-wrapper img {
-border-radius: 100%;
-width: 50px;
-height: 50px;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+}
+
+.anime-row-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.anime_row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-suggestion {
+  width: 200px;
+  height: 260px;
+  background-color: #212121;
+  box-shadow: 15px 15px 30px #191919, -15px -15px 30px #292929;
+  transition: border-radius cubic-bezier(0.075, 0.82, 0.165, 1) 1s,
+    transform cubic-bezier(0.075, 0.82, 0.165, 1) 1s;
+}
+
+.card-suggestion:hover {
+  border-bottom-right-radius: 50px;
+  border-top-left-radius: 50px;
+  transform: scale(1.05);
 }
 
 .card .card-content {
@@ -206,6 +320,7 @@ height: 50px;
 .card:active {
   transform: scale(0.9);
 }
+
 .review-container {
   width: 100%;
   height: 250px;
@@ -216,14 +331,7 @@ height: 50px;
   gap: 2em;
   background: linear-gradient(to left, #35000029 0%, #20010236 100%);
 }
-.cards {
-  position: relative;
-  margin: 15rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  z-index: 2;
-}
+
 .card_suggest {
   z-index: 1;
   position: absolute;
