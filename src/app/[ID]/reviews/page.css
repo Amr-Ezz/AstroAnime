@@ -45,9 +45,13 @@
   padding-top: 1em;
 }
 .para {
-  color: white;
+  background: linear-gradient(to left, #f7ba2b 0%, #ea5358 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+
   font-size: 1em;
-  font-weight: 300;
+  font-weight: 500;
   line-height: 25px;
 }
 
