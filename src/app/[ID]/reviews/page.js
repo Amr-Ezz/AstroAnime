@@ -1,31 +1,16 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  fetchReviewAnime,
-  fetchSingleAnime,
-  fetchTopAnimes,
-} from "@/api/requests";
+import { fetchReviewAnime, fetchSingleAnime } from "../../../api/requests";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
+import "animate.css";
 import "./page.css";
 
 const reviewsPage = ({ params }) => {
   const animeID = params.ID;
-  const [review, setReview] = useState([]);
-  const [anime, setAnime] = useState([]);
-  const [topAiring, setTopAiring] = useState([]);
+
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
   const [activeCard, setActiveCard] = useState(null);
-  // const manageSynopsis = () => {
-  //   setShowFullSynopsis(!showFullSynopsis);
-  // };
-  // const getFullSynopsis = () => {
-  //   if (anime.synopsis.length > 100) {
-  //     return showFullSynopsis
-  //       ? anime.synopsis
-  //       : `${anime.synopsis.substring(0, 200)}...`;
-  //   } else {
-  //     return anime.synopsis;
-  //   }
-  // };
 
   const toggleSynopsis = (index) => {
     if (activeCard === index) {
@@ -34,74 +19,64 @@ const reviewsPage = ({ params }) => {
       setActiveCard(index);
     }
   };
-  const [error, setError] = useState(null);
-  useEffect(() => {
-    if (animeID) {
-      fetchReviewAnime({ animeID })
-        .then((data) => {
-          setReview(data);
-        })
-        .catch((error) => {
-          console.log(error);
-          setError("Failed to fetch review");
-        });
-    }
-  }, [animeID]);
-  useEffect(() => {
-    if (animeID) {
-      fetchSingleAnime({ animeID })
-        .then((data) => {
-          console.log("Anime data", data);
-          console.log("Anime images:", data.images);
-          setAnime(data);
-        })
-        .catch((error) => {
-          console.log(error);
-          setError("Failed to fetch anime");
-        });
-    }
-  }, [animeID]);
-  useEffect(() => {
-    if (animeID) {
-      fetchTopAnimes()
-        .then((data) => setTopAiring(data))
-        .catch((err) => console.log(err));
-    }
-  }, [animeID]);
 
-  if (error) {
-    return <div>{error}</div>;
-  }
+  const {
+    data: review,
+    error: reviewError,
+    isLoading: reviewLoading,
+  } = useQuery(["review", animeID], () => fetchReviewAnime({ animeID }));
+
+  console.log(review, "dataaa");
+
+  const {
+    data: anime,
+    error: animeError,
+    isLoading: animeLoading,
+  } = useQuery(["anime", animeID], () => fetchSingleAnime({ animeID }));
+
+  console.log(anime, "animeed");
+
   if (anime === null) {
-    <div>Loading..</div>;
+    return <Skeleton height={250} />;
   }
-
-  console.log(anime);
-  // const toggleSynopsis = () => setShowFullSynopsis(!showFullSynopsis);
+  if (animeLoading) {
+    return <Skeleton height={250} />;
+  }
+  if (reviewLoading) {
+    return <Skeleton height={250} />;
+  }
+  if (reviewError) {
+    return <div>{reviewError.message}</div>;
+  }
 
   return (
     <div className="hero-container">
-      <div className="card-info" key={anime.mal_id}>
-        <div className="card_description">
+      <div className="card-info" key={anime?.mal_id}>
+        <div className="card_description animate__animated animate__bounce">
           <div className="circle"></div>
           <div className="circle"></div>
           <div className="card-inner">
             <div className="paragraph">
-              <p className="para">{anime.synopsis}</p>
-            
+              <p className="para">{anime?.synopsis}</p>
             </div>
 
             <div className="card-details">
               <div className="card-review">
                 <div className="info">
-                  {anime.images && (
+                  {anime?.images ? (
                     <img
-                      src={anime.images.jpg.large_image_url}
+                      src={anime?.images.jpg.large_image_url}
                       alt="animeCard"
                     />
+                  ) : (
+                    <Skeleton circle={true} height={50} width={50} />
                   )}
                   <div className="overlay">
-                    <h3 className="title">{anime.title_english}</h3>
+                    {anime?.title_english ? (
+                      <h3 className="title">{anime?.title_english}</h3>
+                    ) : (
+                      <Skeleton height={20} width={20} />
+                    )}
                   </div>
                 </div>
               </div>
@@ -149,7 +124,6 @@ const reviewsPage = ({ params }) => {
                       {reviewItem.user.username}
                     </p>
 
-                    {/* <span className="card-title"> {index + 1}</span> */}
                     <p>{reviewItem.score}</p>
                   </div>
                   <div className="card-bottom">
@@ -169,29 +143,6 @@ const reviewsPage = ({ params }) => {
             </div>
           );
         })}
-      </div>
-      <div className="anime_row">
-        
-
-        {/* <div className="cards">
-          {topAiring &&
-            topAiring.slice(0, 3).map((anime, index) => (
-              <div
-                className={`card_suggest ${["one", "two", "three"][index]}`}
-                key={index}
-                style={{
-                  backgroundImage: `linear-gradient(315deg, #03a8f44b, #ff005944), url(${anime.images.jpg.large_image_url})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="cardDetails">
-                  <div className="cardDetailsHaeder">{anime.title_english}</div>
-                  <div className="cardDetailsButton">Click me</div>
-                </div>
-              </div>
-            ))}
-        </div> */}
       </div>
     </div>
   );

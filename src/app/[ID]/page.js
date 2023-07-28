@@ -4,43 +4,58 @@ import {
   fetchSingleAnime,
   fetchPopularAnimes,
   fetchTopAnimes,
-} from "@/api/requests";
+} from "../../api/requests";
 import "./animePage.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useQuery } from "@tanstack/react-query";
+import Skeleton from "react-loading-skeleton";
 
 const AnimePage = ({ params }) => {
   const animeID = params.ID;
-  const [anime, setAnime] = useState(null);
   const [showFullSynopsis, setShowFullSynopsis] = useState(false);
-  const [popularAnime, setPopularAnime] = useState([]);
-  const [topAiring, setTopAiring] = useState([]);
-  useEffect(() => {
-    if (animeID) {
-      fetchSingleAnime({ animeID })
-        .then((data) => {
-          setAnime(data);
-          console.log(anime);
-        })
-        .catch((error) => {
-          console.log(error);
-        });
-    }
-  }, [animeID]);
-  useEffect(() => {
-    fetchPopularAnimes()
-      .then((data) => setPopularAnime(data))
-      .catch((err) => console.log(err));
-  }, []);
-  useEffect(() => {
-    fetchTopAnimes()
-      .then((data) => setTopAiring(data))
-      .catch((err) => console.log(err));
-  }, []);
+  const {
+    data: anime,
+    error: animeError,
+    isLoading: animeLoading,
+  } = useQuery(["anime", animeID], () => fetchSingleAnime({ animeID }));
+  const {
+    data: popularAnime,
+    error: popularAnimeError,
+    isLoading: popularAnimeLoading,
+  } = useQuery(["popularAnime", animeID], () =>
+    fetchPopularAnimes({ animeID })
+  );
+  console.log(popularAnime, "popular anime");
+
+  const {
+    data: topAnime,
+    error: topAnimeError,
+    isLoading: topAnimeLoading,
+  } = useQuery(["topAnime", animeID], () => fetchTopAnimes());
 
   if (!anime) {
     return <div>...Loading</div>;
   }
+  if (animeError) {
+    return <div>{animeError.message}</div>;
+  }
+  if (topAnimeError) {
+    return <div>{topAnimeError.message}</div>;
+  }
+  if (popularAnimeError) {
+    return <div>{popularAnimeError.message}</div>;
+  }
+  if (animeLoading) {
+    return <Skeleton height={100} width={100} />;
+  }
+  if (topAnimeLoading) {
+    return <Skeleton height={100} width={100} />;
+  }
+  if (popularAnimeLoading) {
+    return <Skeleton height={100} width={100} />;
+  }
+
   const toggleSynopsis = () => {
     setShowFullSynopsis(!showFullSynopsis);
   };
@@ -71,20 +86,15 @@ const AnimePage = ({ params }) => {
               <br />
             </h3>
             <p className="paragraph">{anime.title_japanese}</p>
-            <hr style={{margin: "5px 300px", borderColor: "white", borderWidth: "4px", opacity: "1"}} />
-
+            <hr
+              style={{
+                margin: "5px 300px",
+                borderColor: "white",
+                borderWidth: "4px",
+                opacity: "1",
+              }}
+            />
           </div>
-          {/* <div className="card">
-            <b></b>
-            <img src={anime.images.jpg.large_image_url} alt="animeCard" />
-            <div className="content">
-              <p className="title">
-                {anime.title_english}
-                <br />
-                <span>{anime.title_japanese}</span>
-              </p>
-            </div>
-          </div> */}
         </div>
       </div>
       <div className="border" />
@@ -168,7 +178,7 @@ const AnimePage = ({ params }) => {
             </div>
 
             <div className="cards">
-              {topAiring.slice(0, 3).map((anime, index) => (
+              {topAnime.slice(0, 3).map((anime, index) => (
                 <div
                   className={`card_suggest ${["one", "two", "three"][index]}`}
                   key={index}

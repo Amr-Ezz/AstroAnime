@@ -1,11 +1,11 @@
 "use client";
 import styles from "./page.module.css";
-import Search from "@/components/Search/Search";
-import AnimeCards from "@/components/AnimeCards/AnimeCards";
+import Search from "../components/Search/Search";
+import AnimeCards from "../components/AnimeCards/AnimeCards";
 import { useState } from "react";
-import Footer from "@/components/Footer/footer";
-import { fetchUrl } from "@/components/Search/Search";
-import { fetchPopularAnimes, fetchTopAnimes } from "@/api/requests";
+import Footer from "../components/Footer/footer";
+import { fetchUrl } from "../components/Search/Search";
+import { fetchPopularAnimes, fetchTopAnimes } from "../api/requests";
 
 export default function Home() {
   const [searchTerm, setSearchTerm] = useState("");
