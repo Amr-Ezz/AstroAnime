@@ -27,12 +27,12 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
 
         {animeList
           ? animeList
-              .slice(
-                currentPage * itemsPerPage,
-                currentPage * itemsPerPage + itemsPerPage
-              )
+              .slice(currentPage * itemsPerPage, currentPage * itemsPerPage + itemsPerPage)
               .map((anime) => (
-                <div className="innerCard" key={anime.mal_id}>
+                <div
+                  className="innerCard"
+                  key={anime.mal_id}
+                >
                   <div className="frontSide">
                     <div className="paragraph">
                       <p className="title">{anime.title_english}</p>
@@ -45,22 +45,22 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                       />
                     </div>
                   </div>
-                 
-                    
-                      <div className="backSide">
-                        <p className="title">{anime.title_english}</p>
-                        <p className="japanese">{anime.title_japanese}</p>
-                        {anime.episodes ? (
-                          <p>Episodes: {anime.episodes}</p>
-                        ) : null}
-                        <p className="type">{anime.type}</p>
-                        <p className="year">{anime.year}</p>
-                        <Link href={`/${anime.mal_id}`}>
-                          <p className="type">More Details</p>
-                        </Link>
-                      </div>
-                    
-               
+
+                  <div className="backSide">
+                    <p className="title">{anime.title_english}</p>
+                    <p className="japanese">{anime.title_japanese}</p>
+                    {anime.episodes ? <p>Episodes: {anime.episodes}</p> : null}
+                    <p className="type">{anime.type}</p>
+                    <p className="year">{anime.year}</p>
+                    <Link href={`/${anime.mal_id}`}>
+                      <button className="button">
+                        More Details
+                        <div className="hoverEffect">
+                          <div></div>
+                        </div>
+                      </button>
+                    </Link>
+                  </div>
                 </div>
               ))
           : null}
@@ -70,14 +70,20 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
       {showButtons && (
         <div className="buttonContainer">
           {currentPage > 0 && (
-            <button className="btn btnPrev" onClick={prevPage}>
+            <button
+              className="btn btnPrev"
+              onClick={prevPage}
+            >
               Prev
               <span className="icon-left"></span>
               <span className="icon-left after"></span>
             </button>
           )}
 
-          <button className="btn btnNext" onClick={nextPage}>
+          <button
+            className="btn btnNext"
+            onClick={nextPage}
+          >
             Next
             <span className="icon-right"></span>
             <span className="icon-right after"></span>

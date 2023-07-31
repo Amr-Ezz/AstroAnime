@@ -1,11 +1,8 @@
 "use client";
 import React from "react";
-import {
-  fetchSingleAnime,
-  fetchPopularAnimes,
-  fetchTopAnimes,
-} from "../../api/requests";
+import { fetchSingleAnime, fetchPopularAnimes, fetchTopAnimes } from "../../api/requests";
 import "./animePage.css";
+import "animate.css";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useQuery } from "@tanstack/react-query";
@@ -23,9 +20,7 @@ const AnimePage = ({ params }) => {
     data: popularAnime,
     error: popularAnimeError,
     isLoading: popularAnimeLoading,
-  } = useQuery(["popularAnime", animeID], () =>
-    fetchPopularAnimes({ animeID })
-  );
+  } = useQuery(["popularAnime", animeID], () => fetchPopularAnimes({ animeID }));
   console.log(popularAnime, "popular anime");
 
   const {
@@ -47,13 +42,28 @@ const AnimePage = ({ params }) => {
     return <div>{popularAnimeError.message}</div>;
   }
   if (animeLoading) {
-    return <Skeleton height={100} width={100} />;
+    return (
+      <Skeleton
+        height={100}
+        width={100}
+      />
+    );
   }
   if (topAnimeLoading) {
-    return <Skeleton height={100} width={100} />;
+    return (
+      <Skeleton
+        height={100}
+        width={100}
+      />
+    );
   }
   if (popularAnimeLoading) {
-    return <Skeleton height={100} width={100} />;
+    return (
+      <Skeleton
+        height={100}
+        width={100}
+      />
+    );
   }
 
   const toggleSynopsis = () => {
@@ -61,16 +71,17 @@ const AnimePage = ({ params }) => {
   };
   const getFullSynopsis = () => {
     if (anime.synopsis.length > 100) {
-      return showFullSynopsis
-        ? anime.synopsis
-        : `${anime.synopsis.substring(0, 200)}...`;
+      return showFullSynopsis ? anime.synopsis : `${anime.synopsis.substring(0, 200)}...`;
     } else {
       return anime.synopsis;
     }
   };
   return (
     <div className="hero">
-      <div className="container" key={anime.animeID}>
+      <div
+        className="container"
+        key={anime.animeID}
+      >
         <div className="video-wrapper">
           <iframe
             src={`https://www.youtube.com/embed/${anime.trailer.youtube_id}?autoplay=1&controls=0&showinfo=0&autohide=1&mute=1&loop=1&playlist=${anime.trailer.youtube_id}`}
@@ -80,20 +91,20 @@ const AnimePage = ({ params }) => {
           />
         </div>
         <div className="animeCard">
-          <div className="content">
+          <div className="content animate__animated animate__zoomIn">
             <h3 className="title">
               {anime.title_english}
               <br />
             </h3>
             <p className="paragraph">{anime.title_japanese}</p>
-            <hr
+            {/* <hr
               style={{
                 margin: "5px 300px",
                 borderColor: "white",
                 borderWidth: "4px",
                 opacity: "1",
               }}
-            />
+            /> */}
           </div>
         </div>
       </div>
@@ -104,11 +115,19 @@ const AnimePage = ({ params }) => {
             <p className="heading">{anime.title_english}</p>
             <div className="info-card">
               <p className="info-item">
-                <img src="/star.png" alt="Rating Icon" className="info-icon" />
+                <img
+                  src="/star.png"
+                  alt="Rating Icon"
+                  className="info-icon"
+                />
                 {anime.rating}
               </p>
               <p className="info-item">
-                <img src="/stars.png" alt="Score Icon" className="info-icon" />
+                <img
+                  src="/stars.png"
+                  alt="Score Icon"
+                  className="info-icon"
+                />
                 {anime.score}
               </p>
               <p className="info-item">
@@ -120,27 +139,45 @@ const AnimePage = ({ params }) => {
                 {anime.source}
               </p>
               <p className="info-item">
-                <img src="/chevron.png" alt="Rank Icon" className="info-icon" />
+                <img
+                  src="/chevron.png"
+                  alt="Rank Icon"
+                  className="info-icon"
+                />
                 {anime.rank}
               </p>
             </div>
 
             <p className="para">{getFullSynopsis()}</p>
-            <button className="btn" onClick={toggleSynopsis}>
+            <button
+              className="btn"
+              onClick={toggleSynopsis}
+            >
               Read more
             </button>
-            <Link className="btn" href={`/${anime.mal_id}/reviews`}>
+            <Link
+              className="btn"
+              href={`/${anime.mal_id}/reviews`}
+            >
               Reviews
             </Link>
           </div>
         </div>
       </div>
       <div className="anime_suggestion">
-        <video autoPlay loop muted className="video_background">
-          <source src="/lake_-_91562 (1080p).mp4" type="video/mp4" />
+        <video
+          autoPlay
+          loop
+          muted
+          className="video_background"
+        >
+          <source
+            src="/lake_-_91562 (1080p).mp4"
+            type="video/mp4"
+          />
         </video>
         <div className="anime_rows">
-          <div className="anime_row">
+          <div className="anime_row animate__animated animate__zoomIn animate__delay-3s">
             <div className="header_info">
               <h3 className="heading_info">Popular Animes</h3>
             </div>
@@ -157,9 +194,7 @@ const AnimePage = ({ params }) => {
                   }}
                 >
                   <div className="cardDetails">
-                    <div className="cardDetailsHaeder">
-                      {anime.title_english}
-                    </div>
+                    <div className="cardDetailsHaeder">{anime.title_english}</div>
                     <Link
                       href={`/${anime.mal_id}`}
                       className="cardDetailsButton"
@@ -172,7 +207,7 @@ const AnimePage = ({ params }) => {
             </div>
           </div>
 
-          <div className="anime_row">
+          <div className="anime_row animate__animated animate__zoomIn animate__delay-3s">
             <div className="header_info">
               <h3 className="heading_info">Top Airing</h3>
             </div>
@@ -189,9 +224,7 @@ const AnimePage = ({ params }) => {
                   }}
                 >
                   <div className="cardDetails">
-                    <div className="cardDetailsHaeder">
-                      {anime.title_english}
-                    </div>
+                    <div className="cardDetailsHaeder">{anime.title_english}</div>
                     <div className="cardDetailsButton">Click me</div>
                   </div>
                 </div>

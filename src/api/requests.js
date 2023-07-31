@@ -17,6 +17,14 @@ export const fetchTopAnimes = () => {
       throw err;
     });
 };
+export const fetchTopAnimesSingle = () => {
+  return axios
+    .get("https://api.jikan.moe/v4/top/anime?filter=airing&limit=20")
+    .then((res) => res.data.data)
+    .catch((err) => {
+      throw err;
+    });
+};
 export const fetchSingleAnime = ({ animeID }) => {
   return axios
     .get(`https://api.jikan.moe/v4/anime/${animeID}`)
@@ -41,10 +49,9 @@ export const fetchCharactersAnime = () => {
   return axios
     .get(`https://animechan.vercel.app/api/random"`)
     .then((res) => {
-      return res.data.data,
-      console.log(res)
-      
-    }).catch((err) => {
+      return res.data.data, console.log(res);
+    })
+    .catch((err) => {
       console.log(err);
     });
 };

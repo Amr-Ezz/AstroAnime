@@ -111,7 +111,7 @@ const reviewsPage = ({ params }) => {
           return (
             <div key={index}>
               <div className="card" onClick={() => toggleSynopsis(index)}>
-                <div className="card-content">
+                <div className="card-content animate__animated animate__zoomInLeft animate__delay-2s">
                   <div className="card-top">
                     <div className="image-wrapper">
                       <img

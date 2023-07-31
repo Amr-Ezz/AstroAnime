@@ -54,6 +54,9 @@
   font-weight: 500;
   line-height: 25px;
 }
+.animate__animated .animate__lightSpeedInRight {
+  animation-delay: 5s;
+}
 
 .circle {
   width: 100px;

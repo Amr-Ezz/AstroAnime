@@ -1,0 +1,190 @@
+.hero-section {
+  position: relative;
+  margin: 2rem 2rem;
+  width: 100%;
+  height: 100%;
+}
+.anime_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
+}
+.innerCard {
+  width: 250px;
+  height: 320px;
+  text-align: center;
+  transition: transform 0.8s;
+  transform-style: preserve-3d;
+  cursor: pointer;
+}
+
+.innerCard:hover {
+  transform: rotateY(180deg);
+}
+
+.frontSide,
+.backSide {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-evenly;
+  padding: 20px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  border: 1px solid rgba(153, 25, 25, 0.581);
+  border-radius: 1rem;
+  color: white;
+  box-shadow: 0 0 0.3em rgba(213, 21, 21, 0.5);
+  font-weight: 700;
+}
+
+.frontSide,
+.frontSide::before {
+  background: linear-gradient(
+    43deg,
+    rgba(204, 3, 3, 0.467) 0%,
+    rgba(100, 2, 59, 0.359) 46%,
+    rgb(255, 112, 174) 100%
+  );
+}
+
+.backSide,
+.backSide::before {
+  background-image: linear-gradient(160deg, #e900004f 0%, #7e0f3f92 100%);
+}
+
+.backSide {
+  transform: rotateY(180deg);
+}
+
+.frontSide::before,
+.backSide::before {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  content: "";
+  width: 110%;
+  height: 110%;
+  position: absolute;
+  z-index: -1;
+  border-radius: 1em;
+  filter: blur(20px);
+  animation: animate 5s linear infinite;
+}
+
+@keyframes animate {
+  0% {
+    opacity: 0.3;
+  }
+
+  80% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0.3;
+  }
+}
+.imgContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding-bottom: 75%;
+  overflow: hidden;
+}
+.anime_img {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 20%;
+}
+.japanese {
+  font-size: small;
+  color: #dc8585;
+}
+.type {
+  font-weight: 300;
+}
+.year {
+  font-size: large;
+}
+.paragraph {
+  width: 100%;
+  height: 20%;
+}
+.button {
+  display: inline-flex;
+  font-family: "Times New Roman", Times, serif;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  border-radius: 10rem;
+  transition: all 0.02s;
+  font-weight: bold;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.738);
+  z-index: 0;
+  box-shadow: 0 0px 7px -5px rgba(0, 0, 0, 0.5);
+}
+
+.button:hover {
+  background: rgba(193, 228, 248, 0.115);
+  color: rgba(236, 144, 144, 0.792);
+}
+
+.button:active {
+  transform: scale(0.97);
+}
+
+.hoverEffect {
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.hoverEffect div {
+  background: rgb(222, 0, 75);
+  background: linear-gradient(
+    90deg,
+    rgba(222, 0, 75, 1) 0%,
+    rgba(191, 70, 255, 1) 49%,
+    rgba(0, 213, 255, 0.303) 100%
+  );
+  border-radius: 40rem;
+  width: 10rem;
+  height: 10rem;
+  transition: 0.4s;
+  filter: blur(20px);
+  animation: effect infinite 3s linear;
+  opacity: 0.5;
+}
+
+.button:hover .hoverEffect div {
+  width: 8rem;
+  height: 8rem;
+}
+
+@keyframes effect {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
