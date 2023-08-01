@@ -28,7 +28,10 @@ export default function Home() {
         </div>
       </div>
       <div className={styles.animeCards}>
-        <AnimeCards fetchFunction={fetchUrl} searchTerm={searchTerm} />
+        <AnimeCards
+          fetchFunction={fetchUrl}
+          searchTerm={searchTerm}
+        />
         <div className={styles.popularAnime}>
           <h3> Popular Anime</h3>
           <AnimeCards fetchFunction={fetchPopularAnimes} />
