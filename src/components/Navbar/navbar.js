@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.css";
 import { useFavourite } from "../../app/providers/favProvider";
 
 const Navbar = () => {
-  const { favourites } = useFavourite();
+  const { favourite } = useFavourite();
 
   return (
     <div id="mainNavigation">
@@ -53,7 +53,7 @@ const Navbar = () => {
               <a
                 className="nav-link"
                 href="#"
-                onClick={() => alert(JSON.stringify(favourites))}
+                onClick={() => alert(JSON.stringify(favourite))}
               >
                 Favourites
               </a>

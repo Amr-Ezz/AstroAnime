@@ -11,8 +11,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <Navbar />
         <FavouriteProvider>
+          <Navbar />
           <ProvidersClient>
             <Suspense fallback={<Loader />}>{children}</Suspense>
           </ProvidersClient>

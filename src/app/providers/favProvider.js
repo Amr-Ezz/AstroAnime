@@ -6,8 +6,8 @@ export const useFavourite = () => {
 export const FavouriteProvider = ({ children }) => {
   const [favourite, setFavourite] = useState([]);
 
-  const addToFavourite = (animeName) => {
-    setFavourite([...favourite, animeName]);
+  const addToFavourite = (animeName, id) => {
+    setFavourite([...favourite, { animeName, id }]);
   };
   return (
     <FavouriteContext.Provider value={{ favourite, addToFavourite }}>
