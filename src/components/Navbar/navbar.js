@@ -1,18 +1,23 @@
-import React from "react";
+"use client";
+import React, { useState } from "react";
 import "./navbar.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { useFavourite } from "../../app/providers/favProvider";
+import FavouritesModal from "../Modal/modal";
 
 const Navbar = () => {
   const { favourite } = useFavourite();
+  const [showModal, setShowModal] = useState(false);
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+  const handleFavouirteModal = () => {
+    setShowModal(true);
+  };
 
   return (
     <div id="mainNavigation">
-      <nav role="navigation">
-        {/* <div className="py-3 text-center border-bottom">
-      <img src="/astroanime-logo.png" alt="logo" className="invert" />
-    </div> */}
-      </nav>
+      <nav role="navigation"></nav>
       <div className="navbar-expand-md">
         <div className="navbar-dark text-center my-2">
           <button
@@ -52,8 +57,8 @@ const Navbar = () => {
             <li className="nav-item">
               <a
                 className="nav-link"
-                href="#"
-                onClick={() => alert(JSON.stringify(favourite))}
+                href="#Favourites"
+                onClick={handleFavouirteModal}
               >
                 Favourites
               </a>
@@ -66,16 +71,11 @@ const Navbar = () => {
                 Popular Anime
               </a>
             </li>
-            {/* <li className="nav-item dropdown">
-          <a className="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            About
-          </a>
-          <ul className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a className="dropdown-item" href="#">Blog</a></li>
-            <li><a className="dropdown-item" href="#">About Us</a></li>
-            <li><a className="dropdown-item" href="#">Contact us</a></li>
-          </ul>
-        </li> */}
+            <FavouritesModal
+              show={showModal}
+              onClose={handleCloseModal}
+              favourites={favourite}
+            />
           </ul>
         </div>
       </div>

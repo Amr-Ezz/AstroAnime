@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import "./AnimeCards.css";
 import Link from "next/link";
 import { useFavourite } from "../../app/providers/favProvider";
-import { faHeart } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const AnimeCards = ({ fetchFunction, searchTerm }) => {
@@ -23,7 +25,7 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
     }
   }, [fetchFunction, searchTerm]);
   const showButtons = searchTerm || fetchFunction.length !== 1;
-  const { favourite, addToFavourite } = useFavourite();
+  const { favourite, addToFavourite, isFavourite } = useFavourite();
   console.log(favourite);
   return (
     <div>
@@ -53,16 +55,22 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
 
                   <div className="backSide">
                     <FontAwesomeIcon
-                      icon={faHeart}
+                      icon={isFavourite(anime.mal_id) ? faHeartSolid : faHeartRegular}
                       size="sm"
                       style={{
-                        color: "#650101",
+                        color: "rgba(255, 255, 255, 0.738)",
                         position: "absolute",
                         right: "1rem",
                         top: "1rem",
                         fontSize: "2rem",
                       }}
-                      onClick={() => addToFavourite(anime.title, anime.mal_id)}
+                      onClick={() =>
+                        addToFavourite(
+                          anime.title_english,
+                          anime.mal_id,
+                          anime.images.jpg.small_image_url
+                        )
+                      }
                     />
                     <p className="title">{anime.title_english}</p>
                     <p className="japanese">{anime.title_japanese}</p>

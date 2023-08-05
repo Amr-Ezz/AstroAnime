@@ -33,11 +33,11 @@ export default function Home() {
           searchTerm={searchTerm}
         />
         <div className={styles.popularAnime}>
-          <h3> Popular Anime</h3>
+          <h3 className={styles.heading}> Popular Anime</h3>
           <AnimeCards fetchFunction={fetchPopularAnimes} />
         </div>
         <div className={styles.popularAnime}>
-          <h3> Top Airing </h3>
+          <h3 className={styles.heading}> Top Airing </h3>
           <AnimeCards fetchFunction={fetchTopAnimes} />
         </div>
       </div>
