@@ -7,9 +7,9 @@ export default function AnimeLayout({ children }) {
   return (
     <html>
       <body>
-        {/* <Navbar /> */}
+        <Navbar />
         <ProvidersClient>{children}</ProvidersClient>
-        {/* <Footer /> */}
+        <Footer />
       </body>
     </html>
   );

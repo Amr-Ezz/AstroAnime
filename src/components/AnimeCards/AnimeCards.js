@@ -54,24 +54,6 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                   </div>
 
                   <div className="backSide">
-                    <FontAwesomeIcon
-                      icon={isFavourite(anime.mal_id) ? faHeartSolid : faHeartRegular}
-                      size="sm"
-                      style={{
-                        color: "rgba(255, 255, 255, 0.738)",
-                        position: "absolute",
-                        right: "1rem",
-                        top: "1rem",
-                        fontSize: "2rem",
-                      }}
-                      onClick={() =>
-                        addToFavourite(
-                          anime.title_english,
-                          anime.mal_id,
-                          anime.images.jpg.small_image_url
-                        )
-                      }
-                    />
                     <p className="title">{anime.title_english}</p>
                     <p className="japanese">{anime.title_japanese}</p>
                     {anime.episodes ? <p>Episodes: {anime.episodes}</p> : null}
@@ -85,6 +67,25 @@ const AnimeCards = ({ fetchFunction, searchTerm }) => {
                         </div>
                       </button>
                     </Link>
+                    <FontAwesomeIcon
+                      icon={isFavourite(anime.mal_id) ? faHeartSolid : faHeartRegular}
+                      size="sm"
+                      style={{
+                        color: "rgba(255, 255, 255, 0.738)",
+                        position: "absolute",
+                        right: "1rem",
+                        top: "1rem",
+                        fontSize: "2rem",
+                        cursor: "pointer",
+                      }}
+                      onClick={() =>
+                        addToFavourite(
+                          anime.title_english,
+                          anime.mal_id,
+                          anime.images.jpg.small_image_url
+                        )
+                      }
+                    />
                   </div>
                 </div>
               ))

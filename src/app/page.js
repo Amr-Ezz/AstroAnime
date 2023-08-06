@@ -41,9 +41,9 @@ export default function Home() {
           <AnimeCards fetchFunction={fetchTopAnimes} />
         </div>
       </div>
-      <div className={styles.footer}>
+      {/* <div className={styles.footer}>
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 }

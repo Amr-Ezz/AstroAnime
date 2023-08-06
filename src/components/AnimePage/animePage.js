@@ -1,10 +1,15 @@
 "use client";
 import React from "react";
 import "./animePage.css";
-import { fetchTopAnimesSingle } from "../../api/requests";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useFavourite } from "../../app/providers/favProvider";
+import { faHeart as faHeartRegular } from "@fortawesome/free-regular-svg-icons";
+import { faHeart as faHeartSolid } from "@fortawesome/free-solid-svg-icons";
 
 const AnimePage = ({ animeList }) => {
+  const { favourite, addToFavourite, isFavourite } = useFavourite();
+
   return (
     <div className="hero-section">
       <div className="anime_grid">
@@ -41,6 +46,25 @@ const AnimePage = ({ animeList }) => {
                   </div>
                 </button>
               </Link>
+              <FontAwesomeIcon
+                icon={isFavourite(anime.mal_id) ? faHeartSolid : faHeartRegular}
+                size="sm"
+                style={{
+                  color: "rgba(255, 255, 255, 0.738)",
+                  position: "absolute",
+                  right: "1rem",
+                  top: "1rem",
+                  fontSize: "2rem",
+                  cursor: "pointer",
+                }}
+                onClick={() =>
+                  addToFavourite(
+                    anime.title_english,
+                    anime.mal_id,
+                    anime.images.jpg.small_image_url
+                  )
+                }
+              />
             </div>
           </div>
         ))}
