@@ -45,7 +45,6 @@
   bottom: 0.2rem;
   z-index: 12;
   list-style: none;
-  
 }
 .footer_links--2 {
   position: absolute;
@@ -90,7 +89,6 @@
   color: #ffffff6f;
   transition: color 0.3s ease;
   text-decoration: none;
-
 }
 .footer_icon--2:hover {
   color: #ffffff;
@@ -105,7 +103,6 @@
   color: #ffffff6f;
   transition: color 0.3s ease;
   text-decoration: none;
-
 }
 .footer_icon--3:hover {
   color: #ffffff;
@@ -120,7 +117,6 @@
   color: #ffffff6f;
   transition: color 0.3s ease;
   text-decoration: none;
-
 }
 .footer_icon--4:hover {
   color: #ffffff;
@@ -130,6 +126,10 @@
   height: auto;
 }
 
-
-
-
+@media (min-width: 300px) and (max-width: 900px) {
+  .footer_wrapper {
+    justify-content: center;
+    padding-top: 10px;
+    gap: 5px;
+  }
+}

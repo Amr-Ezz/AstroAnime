@@ -365,3 +365,15 @@
   opacity: 0;
   transition: 0.2s ease-in all;
 }
+
+@media (min-width: 300px) and (max-width: 900px) {
+  .myCard {
+    flex-direction: column;
+  }
+  .buttonContainer {
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+}
