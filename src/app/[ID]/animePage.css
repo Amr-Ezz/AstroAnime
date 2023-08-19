@@ -428,6 +428,12 @@
   }
 }
 @media (min-width: 300px) and (max-width: 750px) {
+  .container {
+    flex-direction: column;
+
+    width: 100%;
+    height: 100%;
+  }
   .animeInfo {
     padding: 0;
     margin: 0;
@@ -439,16 +445,26 @@
   .info-item {
     font-size: 10px;
   }
+  .anime_rows {
+    flex-direction: column;
+    align-items: center;
+    padding-left: 3.2rem;
+  }
 }
 @media (min-width: 300px) and (max-width: 610px) {
   .animeInfo {
     padding: 1rem;
-    margin: 1rem;
+    width: fit-content;
   }
   .card_info {
     width: fit-content;
   }
   .info-item {
     font-size: 10px;
+  }
+  .content_info .btn {
+    font-weight: 300;
+    width: 200px;
+    height: 40px;
   }
 }
